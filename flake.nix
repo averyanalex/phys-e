@@ -15,8 +15,8 @@
       let
         pkgs = nixpkgs.legacyPackages.${system};
 
-        blog = pkgs.stdenv.mkDerivation {
-          name = "blog";
+        site = pkgs.stdenv.mkDerivation {
+          name = "phys-e";
           # Exclude themes and public folder from build sources
           src = builtins.filterSource
             (path: type: !(type == "directory" &&
@@ -39,8 +39,7 @@
       in
       {
         packages = {
-          blog = blog;
-          default = blog;
+          default = site;
         };
 
         devShells.default = pkgs.mkShell {
